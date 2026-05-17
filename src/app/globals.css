@@ -1,11 +1,15 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+}
 
 :root {
-  --foreground-rgb: 30, 41, 59; /* slate-800 */
-  --background-start-rgb: 248, 250, 252; /* slate-50 */
-  --background-end-rgb: 255, 255, 255;
+  /* Premium Dark Emerald & Warm Cream Base */
+  --background: #F4F1EA;
+  --foreground: #0B2F1D;
 }
 
 html {
@@ -13,30 +17,24 @@ html {
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      rgb(var(--background-start-rgb)),
-      rgb(var(--background-end-rgb))
-    );
+  background-color: var(--background);
+  color: var(--foreground);
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-/* Kustomisasi scrollbar agar senada dengan tema hijau kakalif.my.id */
+/* Custom Webkit Scrollbar Khas Moslem Arttack */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
-
 ::-webkit-scrollbar-track {
-  background: #f1f5f9; /* slate-100 */
+  background: #EAE5D8;
 }
-
 ::-webkit-scrollbar-thumb {
-  background: #065f46; /* emerald-800 */
-  border-radius: 4px;
+  background: #0B2F1D;
+  border-radius: 5px;
+  border: 2px solid #EAE5D8;
 }
-
 ::-webkit-scrollbar-thumb:hover {
-  background: #047857; /* emerald-700 */
-} 
+  background: #C5925E;
+}

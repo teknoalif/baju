@@ -1,255 +1,265 @@
+// @ts-ignore
+import { Camera, ChevronRight, Info, MapPin, Share2, Star, Zap, Quote, Heart, ShieldCheck, Milestone, Play, Sparkles, Layers, Scissors, Calendar, Gift } from 'lucide-react';
 import React from 'react';
 import Image from 'next/image';
-// @ts-ignore
-import { Phone, CheckCircle2, ShieldCheck, Layers, Scissors, Calendar, Gift, MapPin, Share2, Star, Zap, Quote, Heart, Milestone, Play, Sparkles } from 'lucide-react';
 import RealtimeClock from "./components/RealtimeClock";
 
+// --- DATA KATALOG LOKAL (GAYA ARCHITECTURE LA CROSTA) ---
+const katalogLokal = [
+  { id: 1, nama: "Kaos Panitia Qurban Premium", harga: 55000, deskripsi: "Bahan Cotton Combed 24s tebal adem, sablon Rubber/Plastisol anti pecah, free custom logo nama DKM Masjid.", imageUrl: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=500&q=80", kategori: "KAOS QURBAN" },
+  { id: 2, nama: "Kaos Dakwah Madani", harga: 65000, deskripsi: "Sablon DTF premium finishing hot press, warna tajam solid, bahan premium standard clothing distro lokal.", imageUrl: "https://images.unsplash.com/photo-1562157873-818bc0726f68?w=500&q=80", kategori: "KAOS DAKWAH" },
+  { id: 3, nama: "Kemeja Kerja / PDL Komunitas", harga: 110000, deskripsi: "Bahan American Drill premium, bordir komputer presisi tinggi, jahitan kuat standar seragam korporat.", imageUrl: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=500&q=80", kategori: "SERAGAM PDL" },
+  { id: 4, nama: "Jaket Bomber Dakwah", harga: 145000, deskripsi: "Bahan Taslan waterproof windbreaker, furing dalam adem, aksen bordir solid rapi di dada dan punggung.", imageUrl: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=500&q=80", kategori: "JAKET OUTDOOR" },
+];
+
+const galeriFasilitas = [
+  { id: 1, nama: "MEJA SABLON REVOLVER", img: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=500&q=80" },
+  { id: 2, nama: "MESIN PRESS DTF INDUSTRI", img: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=500&q=80" },
+  { id: 3, nama: "WORKSHOP AMANAH PEBAYURAN", img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=500&q=80" },
+  { id: 4, nama: "QUALITY CONTROL KETAT", img: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=500&q=80" },
+];
+
+const testimoni = [
+  { nama: "Dkm Masjid Al-Hidayah", ulasan: "Alhamdulillah pengerjaan kaos panitia Qurban tepat waktu sebelum hari H. Sablonannya rapi dan bahannya sangat adem dipakai kerja.", bintang: 5 },
+  { nama: "Kang Ahmad", ulasan: "Kombinasi warna sablon DTF-nya luar biasa keluar. Sangat merekomendasikan Moslem Arttack untuk vendor baju majelis taklim.", bintang: 5 },
+  { nama: "Alif Rezky", ulasan: "Manajemen produksi yang transparan dan amanah di bawah asuhan Ustadz Haromain. Hasil sablonan mantap bergaransi.", bintang: 5 }
+];
+
+const galeriVideo = [
+  { id: 1, src: "v1.mp4", label: "PROSES CETAK PRESISI" },
+  { id: 2, src: "v2.mp4", label: "FINISHING QUALITY CHECK" },
+];
+
 export default function LandingPage() {
-  const whatsappNumber = "6281234567890"; // Ganti dengan nomor Ustadz Haromain
-  
-  const baseWaUrl = `https://wa.me/${whatsappNumber}?text=`;
-  const textHero = encodeURIComponent("Halo Sablon Moslem Arttack, saya ingin konsultasi desain kaos.");
-  const textQurban = encodeURIComponent("Assalamu'alaikum, saya ingin memesan Kaos Panitia Qurban 1447 H untuk masjid/komunitas kami.");
-
-  const keunggulanLokal = [
-    { id: 1, title: "SABLON PREMIUM DTF/PLASTISOL", desc: "Hasil cetakan warna tajam, solid, serat detail super rapi, dan daya tahan cuci sangat tinggi.", icon: <Layers size={32} /> },
-    { id: 2, title: "KAOS STANDAR DISTRO", desc: "Menggunakan kain Cotton Combed premium (24s/30s) asli yang adem, menyerap keringat, jahitan rantai kuat.", icon: <Scissors size={32} /> },
-    { id: 3, title: "MANUFAKTUR AMANAH SHARIAH", desc: "Dipantau langsung agar proses transaksi, ketepatan bahan, dan tenggat waktu pengiriman amanah bergaransi.", icon: <ShieldCheck size={32} /> }
-  ];
-
-  const galeriVideo = [
-    { id: 1, src: "v1.mp4", label: "WORKSHOP PRODUKSI" },
-    { id: 2, src: "v2.mp4", label: "PREMIUM FINISHING" },
-  ];
-
-  const portfolioMockup = [
-    { id: 1, tag: "PROJECT QURBAN", title: "Kaos Panitia Qurban Masjid Al-Hidayah", image: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=500&q=80" },
-    { id: 2, tag: "KAOS DAKWAH", title: "Artikel Kaos Pemuda Hijrah Shift", image: "https://images.unsplash.com/photo-1562157873-818bc0726f68?w=500&q=80" },
-    { id: 3, tag: "PROJECT QURBAN", title: "Seragam Idul Adha 1447 H Komunitas", image: "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=500&q=80" },
-    { id: 4, tag: "KAOS MAJELIS", title: "Kaos Polo Majelis Ilmu & Dzikir", image: "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500&q=80" },
-  ];
+  const whatsappNumber = "6281234567890"; // Ganti dengan nomor WA aktif
+  const textHero = encodeURIComponent("Halo Sablon Moslem Arttack, saya ingin konsultasi pengerjaan sablon.");
+  const textQurban = encodeURIComponent("Assalamu'alaikum Ustadz Haromain, kami tertarik memesan slot produksi Kaos Panitia Qurban 1447 H.");
 
   return (
-    <div className="bg-[#F4F6F4] text-[#0f2d1e] font-sans selection:bg-emerald-600 relative">
+    <div className="bg-[#F4F1EA] text-[#0B2F1D] font-sans selection:bg-[#C5925E] selection:text-white relative">
       
-      {/* --- 1. HEADER FIXED STYLED --- */}
-      <nav className="fixed top-0 left-0 right-0 z-[100] bg-[#0c2317] text-white shadow-2xl border-b-4 border-emerald-500 px-4 py-3 sm:px-6">
+      {/* --- 1. HEADER FIXED (LA CROSTA STYLE) --- */}
+      <nav className="fixed top-0 left-0 right-0 z-[100] bg-[#0B2F1D] text-white shadow-2xl border-b-4 border-[#C5925E] px-6 py-4">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <div className="relative w-12 h-12 bg-white rounded-xl overflow-hidden p-0.5 shadow-md">
-              <Image src="/images/logo.jpeg" alt="Logo Sablon Moslem Arttack" fill className="object-cover" />
+          <div className="flex items-center gap-4">
+            <div className="relative w-12 h-12 bg-white rounded-2xl p-0.5 shadow-lg overflow-hidden flex-shrink-0">
+              <Image src="/images/logo.jpeg" alt="Logo" fill className="object-cover rounded-xl" />
             </div>
             <div className="text-left text-white">
-              <h2 className="text-xl sm:text-2xl font-black italic tracking-tighter leading-none uppercase">MOSLEM ARTTACK</h2>
-              <p className="text-[9px] font-bold text-emerald-400 uppercase tracking-widest mt-1">Premium Islam Screen Printing</p>
+              <h2 className="text-2xl font-black italic tracking-tighter leading-none uppercase text-white">MOSLEM ARTTACK</h2>
+              <p className="text-[9px] font-bold text-[#C5925E] uppercase tracking-widest mt-1">Premium Screen Printing & Clothing</p>
             </div>
           </div>
-          
-          {/* Realtime Jam & Kalender Hijriah otomatis */}
-          <div className="bg-black/30 px-5 py-2 rounded-2xl border border-white/5 shadow-inner">
+          <div className="bg-black/20 px-6 py-2 rounded-3xl border border-white/5 shadow-inner">
              <RealtimeClock />
           </div>
-
           <div className="hidden lg:flex gap-4">
-            <a href={baseWaUrl + textHero} target="_blank" rel="noopener noreferrer" className="bg-emerald-500 px-6 py-2.5 rounded-full font-black text-[10px] uppercase tracking-widest hover:scale-105 transition-all shadow-lg italic text-emerald-950">
-              KONSULTASI DESAIN
+            <a href={`https://wa.me/${whatsappNumber}?text=${textHero}`} target="_blank" rel="noopener noreferrer" className="bg-[#C5925E] px-6 py-2.5 rounded-full font-black text-[10px] uppercase tracking-widest hover:scale-105 transition-all shadow-lg italic text-white">
+              KONSULTASI VIA WA
             </a>
           </div>
         </div>
       </nav>
 
-      <div className="h-[145px] md:h-[95px] bg-[#0c2317]"></div>
+      <div className="h-[140px] md:h-[100px] bg-[#0B2F1D]"></div>
 
       {/* --- 2. HERO SECTION --- */}
-      <section className="min-h-[55vh] flex flex-col items-center justify-center relative p-6 bg-[#0c2317] text-white rounded-b-[4rem] sm:rounded-b-[5rem] shadow-2xl overflow-hidden text-center">
-        <div className="absolute inset-0 opacity-5 pointer-events-none bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
-        <div className="relative z-10 text-center flex flex-col items-center max-w-4xl">
-            <h1 className="text-4xl sm:text-7xl font-black italic tracking-tighter uppercase leading-none text-emerald-400 mb-4 drop-shadow-2xl">
-              PREMIUM CLOTHING <br/> & DAKWAH ART
+      <section className="min-h-[60vh] flex flex-col items-center justify-center relative p-6 bg-[#0B2F1D] text-white rounded-b-[4rem] sm:rounded-b-[5rem] shadow-2xl overflow-hidden text-center">
+        <div className="absolute inset-0 opacity-5 pointer-events-none bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:20px_20px]"></div>
+        <div className="relative z-10 text-center flex flex-col items-center">
+            <h1 className="text-5xl md:text-8xl font-black italic tracking-tighter uppercase leading-none text-[#C5925E] mb-4 drop-shadow-2xl">
+              CREATIVE SCREEN <br/> PRINTING ART
             </h1>
-            <p className="text-xs font-bold opacity-70 uppercase tracking-[0.4em] mb-8 text-white">USTADZ HAROMAIN WORKSHOP • PEBAYURAN BEKASI</p>
-            <div className="flex gap-3 bg-emerald-900/50 px-4 py-2 rounded-full border border-emerald-800">
-                <Heart className="text-emerald-400 fill-emerald-400 animate-pulse" size={18} />
-                <span className="font-bold text-xs italic text-emerald-200 uppercase tracking-wider">Amanah, Rapi, Cetakan Tajam, Garansi Waktu</span>
+            <p className="text-sm font-bold opacity-70 uppercase tracking-[0.5em] mb-8 text-white">SABLON MOSLEM ARTTACK • SENI CETAK KREATIF</p>
+            <div className="flex items-center gap-4 bg-emerald-950/80 border border-emerald-800 px-6 py-3 rounded-full">
+                <Heart className="text-[#C5925E] fill-[#C5925E] animate-pulse" />
+                <span className="font-bold italic text-white uppercase tracking-wider text-xs">Amanah, Rapi, Bergaransi Waktu</span>
             </div>
         </div>
       </section>
 
       {/* --- 3. CERITA KAMI (Trust Building) --- */}
-      <section className="py-20 px-4 sm:px-6 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6">
-            <div className="inline-flex items-center gap-2.5 text-emerald-600">
-               <Milestone size={28} />
-               <span className="font-black uppercase tracking-widest text-xs italic">PROFIL WORKSHOP</span>
+      <section className="py-24 px-6 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+          <div className="space-y-8">
+            <div className="inline-flex items-center gap-3 text-[#C5925E]">
+               <Milestone size={32} />
+               <span className="font-black uppercase tracking-widest text-sm italic">SEJARAH KAMI</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-black italic tracking-tighter leading-none text-[#0c2317]">
-              MENGAPA <br/> <span className="text-emerald-600 underline decoration-8 underline-offset-4 uppercase">MOSLEM ARTTACK?</span>
+            <h2 className="text-5xl md:text-6xl font-black italic tracking-tighter leading-none text-[#0B2F1D] text-center md:text-left uppercase">
+              MENGAPA <br/> <span className="text-[#C5925E] underline decoration-8 underline-offset-4">MOSLEM ARTTACK?</span>
             </h2>
-            <p className="text-base leading-relaxed opacity-90 text-justify">
-              Kami memproduksi pakaian santri, majelis taklim, dan panitia event keagamaan dengan mengedepankan kualitas sandang premium distro. Setiap helai kain dan tinta sablon dipilih ketat demi kenyamanan dakwah Anda.
+            <p className="text-lg leading-relaxed opacity-90 italic text-justify">
+              <span className="font-black text-[#0B2F1D]">Sablon Moslem Arttack</span> merupakan sebuah perpaduan kata kerja, seni, dan entitas <span className="font-black text-[#C5925E]">Muslimpreneur</span>. Kami mendedikasikan bakat dalam ekosistem seni cetak kreatif di bidang manual screen printing serta sablon DTF modern.
             </p>
-            <div className="bg-white p-6 sm:p-8 rounded-[2.5rem] sm:rounded-[3.5rem] border-l-8 border-emerald-600 shadow-xl italic relative">
-               <Quote className="absolute top-4 right-6 opacity-5 text-emerald-950" size={50} />
-               <p className="text-lg font-bold leading-relaxed mb-4 text-[#0c2317]">
-                 "Pakaian penyeru kebaikan haruslah rapi dan kokoh. Kami memastikan setiap kaos jamaah dan panitia diproduksi dengan integritas syariah yang jujur dan amanah."
+            <div className="bg-white p-8 rounded-[3rem] border-l-8 border-[#C5925E] shadow-xl italic relative text-center md:text-left">
+               <Quote className="absolute top-4 right-8 opacity-10 text-[#0B2F1D]" size={60} />
+               <p className="text-xl font-bold leading-relaxed mb-4 text-[#0B2F1D]">
+                 "Berdiri sejak awal 2020 di masa pandemi. Berawal dari spesialis menerima pesanan sablon kaos panitia Qurban Nusantara, kini berkembang pesat melayani kaos event, kemeja kerja, hingga jaket."
                </p>
-               <span className="font-black uppercase text-[10px] tracking-widest text-emerald-600">— Bimbingan Ustadz Haromain</span>
+               <span className="font-black uppercase text-xs tracking-widest text-[#C5925E]">— Vendor Sandang Amanah Syariah</span>
             </div>
           </div>
-
-          <div className="grid grid-cols-1 gap-5">
-            <div className="bg-[#0c2317] text-white p-8 rounded-[3rem] sm:rounded-[4rem] shadow-2xl relative overflow-hidden group">
-               <div className="absolute top-0 right-0 p-6 opacity-5 text-white"><ShieldCheck size={90} /></div>
-               <p className="opacity-90 leading-relaxed font-bold text-base italic">
-                 "Kami paham bahwa seragam panitia Qurban wajib selesai sebelum Idul Adha. Oleh karena itu, skema antrean slot produksi kami dikunci dengan kedisplinan jadwal yang transparan."
+          <div className="grid grid-cols-1 gap-6">
+            <div className="bg-[#0B2F1D] text-white p-10 rounded-[4rem] shadow-2xl relative overflow-hidden group">
+               <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:scale-110 transition-transform text-white"><ShieldCheck size={100} /></div>
+               <p className="opacity-90 leading-relaxed font-bold text-lg italic text-left">
+                 "Di bawah bimbingan langsung Ustadz Haromain, komitmen kami adalah menghadirkan ketepatan bahan sandang, hasil cetakan tajam presisi, serta integritas akad bisnis syariah terpercaya."
                </p>
             </div>
-            <div className="bg-white p-8 rounded-[3rem] sm:rounded-[4rem] shadow-xl border border-slate-100 relative overflow-hidden text-left">
-               <div className="absolute top-0 right-0 p-6 opacity-5"><MapPin size={90} /></div>
-               <h4 className="text-xs font-black uppercase text-emerald-600 tracking-widest mb-1">Lokasi Workshop</h4>
-               <p className="text-lg font-black text-[#0c2317] leading-tight mb-3 uppercase italic">
+            <div className="bg-white p-10 rounded-[4rem] shadow-xl border border-slate-200/50 relative overflow-hidden group text-left">
+               <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:scale-110 transition-transform"><MapPin size={100} /></div>
+               <h4 className="text-sm font-black uppercase text-[#C5925E] tracking-widest mb-2">Lokasi Workshop</h4>
+               <p className="text-lg font-black text-[#0B2F1D] leading-tight mb-4 uppercase italic">
                  Pebayuran, Kabupaten Bekasi, Jawa Barat
                </p>
-               <p className="opacity-80 text-sm font-medium text-slate-600">
-                 Siap melayani pesanan kilat dari wilayah Bekasi, Jakarta, Karawang, hingga pengiriman cargo ke seluruh penjuru Nusantara.
+               <p className="opacity-80 text-sm leading-relaxed font-medium text-slate-600">
+                 Workshop sentral kami siap memproses pengiriman dalam jumlah partai besar ke seluruh DKM Masjid di wilayah Jabodetabek hingga luar pulau Jawa.
                </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* --- 4. HIGHLIGHT PROMO KHUSUS - PROJECT QURBAN 1447 H --- */}
-      <section id="qurban" className="py-16 bg-amber-50 border-y-4 border-amber-200 relative px-4">
-        <div className="max-w-4xl mx-auto bg-white rounded-[3.5rem] p-6 sm:p-12 shadow-xl border-2 border-amber-500/20 text-center space-y-6 relative overflow-hidden">
-          <div className="absolute top-0 right-0 bg-amber-500 text-white font-black text-[9px] uppercase tracking-widest px-5 py-2 rounded-bl-2xl">
-             DEADLINE 9 ZULHIJJAH 1447 H
-          </div>
-          <span className="text-amber-800 font-extrabold text-xs uppercase tracking-widest bg-amber-100 px-3 py-1 rounded-md border border-amber-200 inline-block">
-            URGENT CALL FOR DKM & PANITIA
+      {/* --- EXTRA HIGHLIGHT: PROJECT QURBAN 1447 H --- */}
+      <section id="qurban" className="py-16 bg-amber-50/60 border-y-4 border-amber-200/60 px-4">
+        <div className="max-w-4xl mx-auto bg-white rounded-[3.5rem] p-8 sm:p-12 shadow-xl border-2 border-amber-500/20 text-center space-y-6">
+          <span className="text-amber-800 font-extrabold text-xs uppercase tracking-widest bg-amber-100 px-4 py-1.5 rounded-md border border-amber-200 inline-block">
+             SLOT PRODUKSI TERBATAS MENJELANG 9 ZULHIJJAH 1447 H
           </span>
           <h2 className="text-3xl sm:text-5xl font-black text-amber-950 tracking-tighter uppercase italic leading-none">
-            PROJECT KHUSUS <br/><span className="text-emerald-700">KAOS PANITIA QURBAN 1447 H</span>
+             KAOS SERAGAM PANITIA QURBAN NUSANTARA
           </h2>
           <p className="text-slate-600 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
-            Pastikan tim panitia qurban masjid Anda tampil kompak, syar'i, dan rapi saat hari penyembelihan tanggal <strong>9 Zulhijjah 1447 H</strong>. Kami membuka slot produksi khusus kuota DKM dengan benefit istimewa.
+             Sambut kekompakan panitia Idul Adha Anda dengan kualitas sandang terbaik. Free custom desain mockup, pengerjaan terjadwal disiplin, bahan katun sejuk anti gerah saat bertugas.
           </p>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-left max-w-xl mx-auto pt-2">
-            <div className="flex items-center gap-3 text-slate-700 font-bold text-xs bg-slate-50 p-3 rounded-xl border border-slate-200">
-              <Gift className="text-emerald-600 shrink-0" size={16} /> Free Custom Desain Logo Masjid
-            </div>
-            <div className="flex items-center gap-3 text-slate-700 font-bold text-xs bg-slate-50 p-3 rounded-xl border border-slate-200">
-              <Calendar className="text-emerald-600 shrink-0" size={16} /> Garansi Distribusi Selesai H-5
-            </div>
-          </div>
-
           <div className="pt-4">
-            <a href={baseWaUrl + textQurban} target="_blank" rel="noopener noreferrer" className="bg-amber-600 hover:bg-amber-500 text-white font-black px-8 py-4 rounded-full shadow-lg shadow-amber-600/30 transition-all text-xs tracking-widest uppercase inline-flex items-center gap-2">
-              <Zap size={14} fill="currentColor" /> BOOKING SLOT PANITIA QURBAN VIA WA
+            <a href={`https://wa.me/${whatsappNumber}?text=${textQurban}`} target="_blank" rel="noopener noreferrer" className="bg-amber-600 hover:bg-amber-500 text-white font-black px-8 py-4 rounded-full shadow-lg transition-all text-xs tracking-widest uppercase inline-flex items-center gap-2">
+               BOOKING ANTRIAN PRODUKSI QURBAN NOW
             </a>
           </div>
         </div>
       </section>
 
-      {/* --- 5. FITUR / KEUNGGULAN UTAMA --- */}
-      <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="text-center max-w-2xl mx-auto space-y-3 mb-16">
-          <h2 className="text-4xl font-black text-[#0c2317] tracking-tight italic uppercase">KEUNGGULAN CETAK KAMI</h2>
-          <div className="w-16 h-1.5 bg-emerald-600 mx-auto rounded-full"></div>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {keunggulanLokal.map((item) => (
-            <div key={item.id} className="bg-white p-8 rounded-[3.5rem] shadow-sm border border-slate-100 hover:shadow-2xl transition-all flex flex-col text-center items-center space-y-4">
-              <div className="w-16 h-16 bg-emerald-50 rounded-2xl flex items-center justify-center border border-emerald-100 text-emerald-700">
-                {item.icon}
-              </div>
-              <h3 className="text-lg font-black uppercase tracking-tight text-[#0c2317]">{item.title}</h3>
-              <p className="text-slate-500 text-xs leading-relaxed">{item.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* --- 6. VIDEO JELAJAH PRODUKSI (2 VIDEO PRODUKSI BARU) --- */}
-      <section className="py-20 bg-white rounded-[4rem] sm:rounded-[5rem] shadow-xl overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center mb-12">
-          <div className="flex justify-center mb-3 text-emerald-600 animate-bounce">
-            <Play fill="currentColor" size={28} />
+      {/* --- 4. KATALOG LAYANAN CETAK (GAYA LA CROSTA MENU) --- */}
+      <section id="katalog" className="py-24 max-w-7xl mx-auto px-6">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+          <h2 className="text-5xl md:text-7xl font-black italic uppercase tracking-tighter leading-none text-[#0B2F1D] text-center md:text-left">LAYANAN<br/>PRODUKSI</h2>
+          <div className="bg-white px-8 py-4 rounded-3xl shadow-xl border-l-8 border-[#C5925E]">
+            <p className="text-[10px] font-black opacity-40 uppercase mb-1">CATEGORIES</p>
+            <p className="text-3xl font-black">{katalogLokal.length} DIVISI</p>
           </div>
-          <h2 className="text-3xl md:text-5xl font-black italic uppercase tracking-tighter text-[#0c2317]">JELAJAH PRODUKSI VIDEO</h2>
-          <p className="text-xs text-slate-400 font-bold tracking-widest mt-2 uppercase">Intip Langsung Dokumentasi Hasil Sablon Kami</p>
         </div>
         
-        {/* Render Grid Responsif untuk 2 File Video Pendek Anda */}
-        <div className="max-w-2xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 gap-8">
-          {galeriVideo.map((v) => (
-            <div key={v.id} className="relative aspect-[9/16] rounded-[2.5rem] sm:rounded-[3.5rem] overflow-hidden shadow-2xl group border-4 border-[#F4F6F4]">
-              <video 
-                src={`/images/${v.src}`} 
-                autoPlay 
-                muted 
-                loop 
-                playsInline 
-                className="w-full h-full object-cover" 
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0c2317]/80 via-transparent to-transparent opacity-70"></div>
-              <div className="absolute bottom-8 left-0 right-0 text-center">
-                <span className="text-white font-black uppercase text-[9px] tracking-[0.25em] bg-emerald-600 px-4 py-1.5 rounded-full italic shadow-md">
-                  {v.label}
-                </span>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          {katalogLokal.map((item) => (
+            <div key={item.id} className="group bg-white p-4 rounded-[3.5rem] shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 flex flex-col h-full border border-transparent hover:border-[#C5925E]/20">
+              <div className="aspect-square rounded-[3rem] overflow-hidden mb-6 relative border-4 border-[#F4F1EA] bg-[#F4F1EA] flex items-center justify-center">
+                <img src={item.imageUrl} alt={item.nama} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 object-center" />
+                <div className="absolute top-4 right-4 bg-[#0B2F1D] text-white font-black px-4 py-2 rounded-2xl shadow-lg text-xs italic border border-[#C5925E]/40">
+                  {`Mulai Rp${item.harga.toLocaleString('id-ID')}`}
+                </div>
+                <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm text-[#0B2F1D] font-black w-10 h-10 flex items-center justify-center rounded-full text-xs shadow-md border border-[#0B2F1D]/10">{item.id}</div>
+              </div>
+              <div className="px-4 pb-4 flex-grow text-center md:text-left">
+                <h3 className="text-lg font-black uppercase tracking-tighter mb-2 group-hover:text-[#C5925E] transition-colors leading-tight text-[#0B2F1D]">{item.nama}</h3>
+                <p className="text-[11px] font-bold opacity-70 leading-relaxed italic mb-6 text-slate-600">{item.deskripsi}</p>
+              </div>
+              <div className="px-4 mt-auto border-t border-dashed border-slate-100 pt-4">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[9px] font-black uppercase opacity-50 tracking-widest text-[#0B2F1D]">{item.kategori}</span>
+                    <div className="flex gap-0.5 text-amber-500">
+                      {[1, 2, 3, 4, 5].map((s) => <Star key={s} size={10} fill="currentColor" />)}
+                    </div>
+                  </div>
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* --- 7. MOCKUP GALERI PRODUKSI --- */}
-      <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="flex flex-col sm:flex-row justify-between items-center sm:items-end mb-12 gap-4 text-center sm:text-left">
-          <h2 className="text-4xl font-black italic uppercase tracking-tighter text-[#0c2317]">KATALOG MOCKUP & HASIL</h2>
-          <span className="bg-white px-5 py-2 rounded-2xl shadow-md text-xs font-black border-l-4 border-emerald-600">ITEMS: 4 TEMPLATE</span>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {portfolioMockup.map((item) => (
-            <div key={item.id} className="group bg-white p-3 rounded-[2.5rem] shadow-sm hover:shadow-xl transition-all flex flex-col h-full border border-slate-100">
-              <div className="aspect-square rounded-[2rem] overflow-hidden mb-4 relative bg-slate-100">
-                <img src={item.image} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                <div className="absolute top-3 left-3 bg-[#0c2317] text-white font-black px-2.5 py-1 rounded-lg text-[9px] tracking-wider uppercase">
-                  {item.tag}
-                </div>
-              </div>
-              <div className="px-2 pb-3 flex-grow">
-                <h3 className="text-sm font-black uppercase tracking-tight text-[#0c2317] leading-snug">{item.title}</h3>
-              </div>
-              <div className="px-2 pt-2 border-t border-dashed border-slate-100 flex items-center justify-between text-slate-400">
-                <span className="text-[8px] font-black tracking-widest uppercase">Premium Quality</span>
-                <div className="flex text-amber-400">
-                  {[1,2,3,4,5].map((s) => <Star key={s} size={9} fill="currentColor" />)}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* --- 8. FOOTER METADATA STYLED --- */}
-      <footer className="bg-[#0c2317] text-white p-12 sm:p-20 rounded-t-[4rem] sm:rounded-t-[5rem] text-center relative border-t-8 border-emerald-500 overflow-hidden flex flex-col items-center">
-        <div className="relative z-10 flex flex-col items-center text-center max-w-2xl space-y-6">
-          <div className="flex justify-center gap-4">
-             <a href={baseWaUrl + textHero} target="_blank" rel="noopener noreferrer" className="p-5 bg-white/5 rounded-2xl hover:bg-emerald-600 hover:text-emerald-950 transition-all text-white shadow-lg">
-               <Zap size={20} />
-             </a>
-             <a href="#qurban" className="p-5 bg-white/5 rounded-2xl hover:bg-amber-500 transition-all text-white shadow-lg">
-               <Share2 size={20} />
-             </a>
+      {/* --- 5. FASILITAS WORKSHOP (SUDUT KENYAMANAN) --- */}
+      <section className="py-24 bg-[#0B2F1D] text-white rounded-[5rem] shadow-inner mt-12 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 relative z-10 text-center md:text-left">
+          <div className="flex flex-col md:flex-row items-center gap-6 mb-16">
+             <Sparkles size={32} className="text-[#C5925E] animate-pulse" />
+             <div>
+                <h2 className="text-4xl md:text-6xl font-black italic uppercase tracking-tighter underline decoration-[#C5925E] decoration-8 underline-offset-8 leading-none text-white">INFRASTRUKTUR</h2>
+                <p className="text-[10px] font-black uppercase tracking-[0.4em] text-emerald-300 mt-4 italic">KAPASITAS ALAT INDUSTRI CETAK KAMI</p>
+             </div>
           </div>
-          <p className="opacity-50 text-[9px] font-black tracking-[0.5em] uppercase italic text-center text-white leading-loose">
-            DIKEMBANGKAN OLEH AL ALIFY TECH 🄯 2026 • SABLON MOSLEM ARTTACK • BAJU.JAMIA.ID SUBDOMAIN
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {galeriFasilitas.map((foto) => (
+              <div key={foto.id} className="group bg-white p-3 rounded-[2.5rem] shadow-xl hover:-translate-y-2 transition-all duration-500">
+                <div className="aspect-[4/3] rounded-[2rem] overflow-hidden bg-slate-100">
+                  <img src={foto.img} alt={foto.nama} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
+                </div>
+                <p className="text-[#0B2F1D] text-[10px] font-black uppercase tracking-tighter text-center mt-3 opacity-80 italic">{foto.nama}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* --- 6. JELAJAH PRODUKSI (2 VIDEO DENGAN LABEL ASLI) --- */}
+      <section className="py-24 bg-white rounded-[5rem] shadow-xl overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 text-center mb-16">
+          <div className="flex justify-center mb-4 text-[#C5925E] animate-bounce"><Play fill="currentColor" size={32} /></div>
+          <h2 className="text-4xl md:text-6xl font-black italic uppercase tracking-tighter text-[#0B2F1D]">JELAJAH PRODUKSI VIDEO</h2>
+          <p className="text-xs text-slate-400 font-bold tracking-widest mt-2 uppercase">Dokumentasi Real-Time Studio Cetak Sablon</p>
+        </div>
+        
+        {/* Mengunci layout Grid pas untuk 2 File Video Pendek */}
+        <div className="max-w-3xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 gap-8">
+          {galeriVideo.map((v) => (
+            <div key={v.id} className="relative aspect-[9/16] rounded-[3rem] overflow-hidden shadow-2xl group border-4 border-[#F4F1EA]">
+              <video src={`/images/${v.src}`} autoPlay muted loop playsInline className="w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0B2F1D]/90 via-transparent to-transparent opacity-80"></div>
+              <div className="absolute bottom-8 left-0 right-0 text-center">
+                <span className="text-white font-black uppercase text-[10px] tracking-[0.3em] bg-[#C5925E] px-5 py-2 rounded-full italic shadow-md border border-amber-300/30">{v.label}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* --- 7. REVIU KONSUMEN (TESTIMONI) --- */}
+      <section className="py-24 bg-white rounded-[5rem] shadow-inner mb-24">
+        <div className="max-w-7xl mx-auto px-6">
+           <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-black italic uppercase tracking-tighter text-[#0B2F1D]">ULASAN KLEM <span className="text-[#C5925E]">MITRA AMANAH</span></h2>
+              <div className="w-24 h-2 bg-[#C5925E] mx-auto mt-4 rounded-full"></div>
+           </div>
+           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {testimoni.map((t, i) => (
+                <div key={i} className="bg-[#F4F1EA] p-8 rounded-[3.5rem] relative shadow-sm hover:shadow-xl transition-all border border-transparent hover:border-[#C5925E]/20 flex flex-col h-full">
+                   <div className="flex justify-center md:justify-start gap-1 mb-4 text-amber-500">
+                      {[...Array(t.bintang)].map((_, i) => <Star key={i} size={16} fill="currentColor" />)}
+                   </div>
+                   <p className="italic font-medium mb-6 opacity-90 leading-relaxed text-[#0B2F1D] flex-grow">"{t.ulasan}"</p>
+                   <div className="flex items-center justify-center md:justify-start gap-3">
+                      <div className="w-10 h-10 bg-[#0B2F1D] rounded-full flex items-center justify-center text-white font-black text-xs uppercase">
+                         {t.nama.charAt(0)}
+                      </div>
+                      <span className="font-black uppercase text-[10px] tracking-widest text-[#0B2F1D]">{t.nama}</span>
+                   </div>
+                </div>
+              ))}
+           </div>
+        </div>
+      </section>
+
+      {/* --- 8. FOOTER KREATIF AMANAH --- */}
+      <footer className="bg-[#0B2F1D] text-white p-20 rounded-t-[5rem] text-center relative border-t-8 border-[#C5925E] overflow-hidden flex flex-col items-center">
+        <div className="relative z-10 flex flex-col items-center text-center text-white">
+          <div className="flex justify-center gap-6 mb-12">
+             <a href={`https://wa.me/${whatsappNumber}?text=${textHero}`} target="_blank" rel="noopener noreferrer" className="p-6 bg-white/5 rounded-3xl hover:bg-[#C5925E] hover:scale-110 transition-all text-white shadow-lg"><Zap size={24} /></a>
+          </div>
+          <p className="opacity-40 text-[9px] font-black tracking-[0.6em] uppercase italic text-center text-white">
+             DIKEMBANGKAN OLEH AL ALIFY TECH 🄯 2026 • SABLON MOSLEM ARTTACK • BAJU.JAMIA.ID
           </p>
         </div>
       </footer>
-
     </div>
   );
 }
